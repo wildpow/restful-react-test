@@ -1,5 +1,7 @@
 import React from "react";
 import { useGet } from "restful-react";
+import MyHugeList from "./mutations";
+
 import "./App.css";
 
 function App() {
@@ -27,6 +29,7 @@ function App() {
           </div>
         </div>
       )}
+      <MyHugeList />
     </div>
   );
 }
