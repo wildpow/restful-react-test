@@ -1,35 +1,17 @@
 import React from "react";
-import { useGet } from "restful-react";
-import MyHugeList from "./mutations";
-
+import { useRandomGif } from "./api";
 import "./App.css";
 
 function App() {
-  const { data: randomDogImage, loading, refetch } = useGet({
-    path: "breeds/image/random",
-    lazy: true,
-  });
+  const { error, loading, data: gifRes } = useRandomGif({});
   return (
     <div className="App">
-      {!randomDogImage && loading ? (
-        <h1>Loading....</h1>
-      ) : (
-        <div>
-          <div>
-            <h1>Restful-react Test dog</h1>
-            <button onClick={() => refetch()}>Get a test dog</button>
-          </div>
-          <div>
-            {randomDogImage && (
-              <img
-                alt="Here's a good boye!"
-                src={randomDogImage && randomDogImage.message}
-              />
-            )}
-          </div>
-        </div>
+      <h1>Restful-React Giphy Test!</h1>
+      {error && <h1>{error.message}</h1>}
+      {loading && <h1>Loading....</h1>} :
+      {gifRes && (
+        <img alt="Giphy Giphy" src={gifRes.data?.images?.original?.url} />
       )}
-      <MyHugeList />
     </div>
   );
 }

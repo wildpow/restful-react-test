@@ -7,7 +7,7 @@ import { RestfulProvider } from "restful-react";
 
 ReactDOM.render(
   <React.StrictMode>
-    <RestfulProvider base="https://dog.ceo/api">
+    <RestfulProvider base="https://api.giphy.com/v1">
       <App />
     </RestfulProvider>
   </React.StrictMode>,
