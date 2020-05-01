@@ -1,8 +1,9 @@
 import React from "react";
-import { useTrendingGifs } from "./api";
+import { useTrendingGifs, useTrendingStickers } from "./api";
 import "./App.css";
 
 function App() {
+  // Also try useTrendingGifs
   const { error, loading, data: gifRes } = useTrendingGifs({});
   return (
     <div className="App">
