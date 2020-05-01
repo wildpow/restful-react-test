@@ -1,32 +1,32 @@
 import React from "react";
 import { useGet } from "restful-react";
-import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
-  const { data: randomDogImage } = useGet({
+  const { data: randomDogImage, loading, refetch } = useGet({
     path: "breeds/image/random",
+    lazy: true,
   });
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <img
-          alt="Here's a good boye!"
-          src={randomDogImage && randomDogImage.message}
-        />
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {!randomDogImage && loading ? (
+        <h1>Loading....</h1>
+      ) : (
+        <div>
+          <div>
+            <h1>Restful-react Test dog</h1>
+            <button onClick={() => refetch()}>Get a test dog</button>
+          </div>
+          <div>
+            {randomDogImage && (
+              <img
+                alt="Here's a good boye!"
+                src={randomDogImage && randomDogImage.message}
+              />
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
