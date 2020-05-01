@@ -7,7 +7,10 @@ import { RestfulProvider } from "restful-react";
 
 ReactDOM.render(
   <React.StrictMode>
-    <RestfulProvider base="https://api.giphy.com/v1">
+    <RestfulProvider
+      queryParams={{ apiKey: process.env.REACT_APP_GIPHY }}
+      base="https://api.giphy.com/v1"
+    >
       <App />
     </RestfulProvider>
   </React.StrictMode>,
